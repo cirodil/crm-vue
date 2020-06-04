@@ -10,6 +10,18 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: { layout: 'empty' },
+    component: () => import('../views/Login.vue'),
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    meta: { layout: 'main' },
+    component: () => import('../views/Categories.vue'), // https://youtu.be/Pm2aASoksJU?t=1141
+  },
 ];
 
 const router = new VueRouter({
