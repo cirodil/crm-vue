@@ -8,7 +8,7 @@
           type="text"
           v-model.trim="email"
           :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
-        >
+        />
         <label for="email">Email</label>
         <small
           class="helper-text invalid"
@@ -25,7 +25,7 @@
           type="password"
           v-model.trim="password"
           :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
-        >
+        />
         <label for="password">Пароль</label>
         <small
           class="helper-text invalid"
@@ -73,7 +73,7 @@ export default {
     }
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
@@ -82,7 +82,13 @@ export default {
         email: this.email,
         password: this.password,
       }
-      console.log(formData)
+
+      try {
+        await this.$store.dispatch('login', formData)
+      this.$router.push('/')
+    }
+       catch (e) {}
+      await this.$store.dispatch('login', formData)
       this.$router.push('/')
     }
   }
