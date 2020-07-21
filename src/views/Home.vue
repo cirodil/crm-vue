@@ -15,7 +15,11 @@
       <HomeBill
         :rates="currency.rates"
       />
-      <HomeCurrency />
+
+      <HomeCurrency
+        :rates="currency.rates"
+        :date="currency.date"
+      />
       
     </div>
   </div>
